@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Authenticaed User for VUEX
+ */
+Route::get('/auth_user', [UserController::class, 'getAuthenticatedUser'])->name('get.authenticated.user');
+Auth::routes([
+    'register' => false, // Registration Routes...
+    //'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

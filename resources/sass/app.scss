@@ -1,8 +1,12 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '~@mdi/font/css/materialdesignicons.css';
+
+// Vuetify
+@import '~vuetify/dist/vuetify.min.css';
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Site Layout
+@import 'site-layout';
