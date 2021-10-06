@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('admin');
             $table->string('phone')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->boolean('is_active')->nullable()->default(false);
+            $table->string('status')->default('active'); // active, disabled, trashed
             $table->rememberToken();
             $table->timestamps();
         });

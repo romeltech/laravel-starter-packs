@@ -49,19 +49,13 @@ Vue.use(helpers_plugin);
 /**
  * Global Components
  */
-// Vue.component(
-//     "dashboard-nav",
-//     require("./components/ui/DashboardNav.vue").default
-// );
-// Vue.component(
-//     "requisition-form",
-//     require("./components/forms/RequisitionForm.vue").default
-// );
-// Vue.component("snack-bar", require("./components/ui/SnackBar.vue").default);
-// Vue.component(
-//     "dialog-loader",
-//     require("./components/ui/DialogLoader.vue").default
-// );
+Vue.component(
+    "dashboard-nav",
+    require("./components/admin/ui/navigation/DashboardNav.vue").default
+);
+Vue.component("snack-bar", require("./components/common/SnackBar.vue").default);
+Vue.component("dialog-loader", require("./components/common/DialogLoader.vue").default);
+Vue.component("confirmation-dialog", require("./components/common/ConfirmationDialog.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

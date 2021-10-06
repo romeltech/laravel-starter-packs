@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,22 @@ Auth::routes([
     //'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
+Route::get('/', function () { return redirect('/d/dashboard');});
+Route::group(['prefix'=>'d','as'=>'dashboard.', 'middleware' => 'auth'], function(){
 
-Route::get('/', function () {
-    return view('welcome');
+    /**
+     * vue-router pages
+     */
+    Route::get('/', [DashboardController::class, 'dashboard']);
+    Route::get('/{page}', [DashboardController::class, 'dashboard']);
+    Route::get('/{page}/{action}', [DashboardController::class, 'dashboard']);
+
+    /**
+     * Users
+     */
+    Route::get('/user/edit/{id}', [DashboardController::class, 'dashboard'])->name('user.edit');
+    Route::get('/user/get/all', [UserController::class, 'getAllUsers'])->name('user.get.all');
+    Route::get('/user/get/{id}', [UserController::class, 'getSingleUser'])->name('user.get.single');
+    Route::post('/user/status/update', [UserController::class, 'updateUserStatus'])->name('user.status.update');
+    Route::post('/user/update/{id}', [UserController::class, 'updateUser'])->name('user.update');
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

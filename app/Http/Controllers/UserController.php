@@ -29,4 +29,23 @@ class UserController extends Controller
             'user_access' => $access,
         ], 200);
     }
+
+    public function getAllUsers()
+    {
+        // Fetch All Users
+        $users = User::all();
+        return response()->json($users, 200);
+    }
+
+    public function getSingleUser($id)
+    {
+        $user = User::where('id', $id)->firstOrFail();
+        return response()->json($user, 200);
+    }
+
+    public function updateUserStatus(Request $request)
+    {
+        $user = User::where('id', $request['id'])->update(['status' => $request['status']]);
+        return response()->json($user, 200);
+    }
 }
