@@ -20,7 +20,7 @@ Laravel Starter Packs are ready to use laravel projects with pre-built admin das
 
 Laravel Vuetify is a starter pack with vue, vuetify and user management already installed.
 
-# Usage
+### Usage
 
 - Clone this package
 `git clone https://github.com/mel-7/laravel-starter-packs.git` 
