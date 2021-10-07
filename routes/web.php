@@ -41,5 +41,6 @@ Route::group(['prefix'=>'d','as'=>'dashboard.', 'middleware' => 'auth'], functio
     Route::get('/user/get/all', [UserController::class, 'getAllUsers'])->name('user.get.all');
     Route::get('/user/get/{id}', [UserController::class, 'getSingleUser'])->name('user.get.single');
     Route::post('/user/status/update', [UserController::class, 'updateUserStatus'])->name('user.status.update');
-    Route::post('/user/update/{id}', [UserController::class, 'updateUser'])->name('user.update');
+    Route::post('/user/save', [UserController::class, 'saveUserData'])->name('user.save.data');
+    Route::post('/user/check/email', [UserController::class, 'checkEmail'])->name('user.check.email');
 });

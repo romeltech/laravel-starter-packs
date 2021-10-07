@@ -987,3 +987,9 @@
 /*! ./zh-Hant */
 
 /*! vue */
+
+/**
+  * vee-validate v3.4.13
+  * (c) 2021 Abdelrahman Awad
+  * @license MIT
+  */

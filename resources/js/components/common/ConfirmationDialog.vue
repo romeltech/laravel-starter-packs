@@ -38,7 +38,9 @@ export default {
       title: this.confOptions.title ? this.confOptions : "Confirmation",
       action: this.confOptions.action ? this.confOptions.action : "Confirm",
       msg: this.confOptions.msg ? this.confOptions.msg : "Please confirm",
-      btnTitle: this.confOptions.btnTitle ? this.confOptions.btnTitle : "Confirm",
+      btnTitle: this.confOptions.btnTitle
+        ? this.confOptions.btnTitle
+        : "Confirm",
     };
   },
   methods: {
@@ -46,9 +48,6 @@ export default {
       this.status = false;
       this.$emit("response", true);
     },
-  },
-  created() {
-    console.log(this.confOptions);
   },
 };
 </script>

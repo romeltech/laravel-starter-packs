@@ -13,7 +13,7 @@
           ></v-skeleton-loader>
         </v-col>
         <v-col v-else cols="12" class="py-5">
-          <v-btn to="users/new" class="secondary mb-5">New User</v-btn>
+          <v-btn to="user/new" class="secondary mb-5">New User</v-btn>
           <v-card>
             <v-card-title>
               <h4>Users</h4>

@@ -2,7 +2,7 @@
   <div>
     <user-form
       :userdata="userData"
-      :pagetitle="pageTitle"
+      :pagetitle="'edit'"
       @saved="savedResponse"
     ></user-form>
   </div>
@@ -15,7 +15,6 @@ export default {
   components: { UserForm },
   data() {
     return {
-      pageTitle: "Edit",
       userData: {},
     };
   },
@@ -25,7 +24,6 @@ export default {
         .get("/d/user/get/" + this.$route.params.id)
         .then((response) => {
           this.userData = Object.assign({}, response.data);
-          console.log(this.userData);
         })
         .catch((err) => {});
     },

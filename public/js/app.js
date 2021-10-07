@@ -2457,7 +2457,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      pageTitle: "Edit",
       userData: {}
     };
   },
@@ -2467,7 +2466,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/d/user/get/" + this.$route.params.id).then(function (response) {
         _this.userData = Object.assign({}, response.data);
-        console.log(_this.userData);
       }).catch(function (err) {});
     },
     savedResponse: function savedResponse() {
@@ -2476,6 +2474,37 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getUser();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _UserForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserForm */ "./resources/js/components/admin/users/UserForm.vue");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    userForm: _UserForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {//   pagetitle: 'Create New' ,
+    };
   }
 });
 
@@ -2492,11 +2521,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.assign.js */ "./node_modules/core-js/modules/es.object.assign.js");
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/vee-validate.full */ "./node_modules/vee-validate/dist/vee-validate.full.js");
-/* harmony import */ var vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.assign.js */ "./node_modules/core-js/modules/es.object.assign.js");
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vee-validate/dist/vee-validate.full */ "./node_modules/vee-validate/dist/vee-validate.full.js");
+/* harmony import */ var vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_4__);
 
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2622,8 +2676,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    ValidationProvider: vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_1__.ValidationProvider,
-    ValidationObserver: vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_1__.ValidationObserver
+    ValidationProvider: vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_4__.ValidationProvider,
+    ValidationObserver: vee_validate_dist_vee_validate_full__WEBPACK_IMPORTED_MODULE_4__.ValidationObserver
   },
   props: {
     userdata: {
@@ -2632,85 +2686,135 @@ __webpack_require__.r(__webpack_exports__);
     },
     pagetitle: {
       type: String,
-      default: ""
+      default: "new"
     }
   },
   data: function data() {
     return {
+      statusSwitch: true,
+      rolesArray: ["admin", "editor"],
+      actionSave: this.pagetitle,
+      cardTitle: "New user",
       emailExisted: "",
-      curStatus: "",
-      submitBtn: "Submit",
-      actionSave: "add",
-      emailError: "",
-      newLineManager: [],
-      editPage: false,
       usersObj: {},
-      propsObj: {},
-      companies: [],
-      departments: [],
-      users: [],
-      people: 0,
-      approvalCnt: "None",
+      origEmail: this.userdata ? this.userdata.email : "",
+      newStatus: "",
       // ui
-      loaderOptions: {},
+      is_checking_mail: false,
       sbOptions: {},
       confOptions: {},
-      dialogDelete: false,
-      origEmail: "",
-      newStatus: ""
+      loading: this.userdata ? true : false,
+      email_already_exists: false
     };
   },
+  watch: {
+    userdata: {
+      handler: function handler(val, oldVal) {
+        if (val != oldVal) {
+          this.usersObj = Object.assign({}, val);
+          this.origEmail = val.email;
+          this.cardTitle = val.first_name + " " + val.last_name;
+          this.statusSwitch = val.status == "active" ? true : false;
+        }
+
+        this.loading = false;
+      },
+      deep: true
+    }
+  },
   methods: {
-    confResponse: function confResponse(value) {
-      if (value == true) {
-        this.updateUserStatus();
-      }
-    },
-    submit: function submit(i) {
+    emailCheck: function emailCheck() {
       var _this = this;
 
-      // if(this.usersObj.email == this.origEmail){
-      //    delete this.usersObj['email'];
-      // }
-      axios.post("/v/users/add-update-data", this.usersObj).then(function (response) {
-        console.log(response);
-        _this.loaderOptions = {
-          status: true,
-          text: "Please wait..."
-        };
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!_this.usersObj.email) {
+                  _context.next = 4;
+                  break;
+                }
 
-        _this.$refs.form.reset();
+                _this.is_checking_mail = true;
+                _context.next = 4;
+                return axios.post("/d/user/check/email", {
+                  email: _this.usersObj.email
+                }).then(function (response) {
+                  if (response.data.email_existed == true) {
+                    _this.email_already_exists = true;
+                    _this.emailExisted = "Email already registered"; // Set error message
+                  } else {
+                    _this.email_already_exists = false;
+                    _this.emailExisted = ""; // Empty error message
+                  }
 
-        setTimeout(function () {
-          _this.loaderOptions = {
-            status: false
+                  _this.is_checking_mail = false;
+                }).catch(function (err) {
+                  console.log("Email Check Error");
+                  console.log(err.response);
+                  _this.is_checking_mail = false;
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    submit: function submit() {
+      var _this2 = this;
+
+      this.loading = true; // Set status value
+
+      this.usersObj.status = this.statusSwitch == true ? "active" : "disabled"; // Check if the email is changed
+
+      if (this.usersObj.email == this.origEmail) {
+        delete this.usersObj["email"];
+      } // Check the email if exists
+
+
+      this.emailCheck().then(function () {
+        // Set error message if email already exists
+        if (_this2.email_already_exists == true) {
+          _this2.sbOptions = {
+            status: true,
+            type: "error",
+            text: "Email already registered"
           };
-          _this.sbOptions = {
+          _this2.loading = false;
+          return false;
+        } // Send data to save
+
+
+        axios.post("/d/user/save", _this2.usersObj).then(function (response) {
+          _this2.sbOptions = {
             status: true,
             type: "success",
-            text: "Add/Updated Successfully!"
+            text: "Success! Data has been saved"
           };
 
-          if (_this.pagetitle == "Create New") {
-            _this.$router.push({
-              name: "EditUser",
-              params: {
-                id: response.data.company.id
-              }
+          if (_this2.pagetitle == "edit") {
+            _this2.$emit("saved", true);
+          } else {
+            _this2.$nextTick(function () {
+              _this2.loading = false;
+              _this2.usersObj = {};
+
+              _this2.$refs.user_form_observer.reset();
             });
           }
-
-          _this.$emit("saved", true);
-        }, 1000);
-      }).catch(function (err) {
-        console.log(err);
-        _this.emailExisted = "Email already registered";
-        _this.loading = false;
-        _this.sbOptions = {
-          status: true,
-          type: "error",
-          text: "Email already registered"
-        };
+        }).catch(function (err) {
+          console.log(err.response.data);
+          _this2.loading = false;
+          _this2.sbOptions = {
+            status: true,
+            type: "error",
+            text: "Error saving data"
+          };
+        });
       });
     },
     deleteRestoreUser: function deleteRestoreUser() {
@@ -2723,72 +2827,30 @@ __webpack_require__.r(__webpack_exports__);
         msg: "Please confirm that you want to " + btnText + " this account.",
         btnTitle: btnText,
         action: action
-      }; // run delete
+      };
     },
-    closeDelete: function closeDelete() {
-      this.dialogDelete = false;
+    confResponse: function confResponse(value) {
+      if (value == true) {
+        this.updateUserStatus();
+      }
     },
     updateUserStatus: function updateUserStatus() {
-      var _this2 = this;
+      var _this3 = this;
 
-      this.loaderOptions = {
-        status: true
-      };
+      this.loading = true;
       var data = {
         id: this.usersObj.id,
         status: this.newStatus
       };
       axios.post("/d/user/status/update", data).then(function (response) {
-        _this2.$emit("saved", true);
+        _this3.$emit("saved", true);
 
-        _this2.loaderOptions = {
-          status: false
-        };
-        _this2.sbOptions = {
+        _this3.sbOptions = {
           status: true,
           type: "success",
           text: "User has been updated"
         };
       });
-    }
-  },
-  created: function created() {
-    console.log(this.pagetitle); // this.getCompanies().then(() => {
-    //   this.getDepartments().then(() => {
-    //     this.getUsers().then(() => {
-    //       if (
-    //         typeof this.usersObj.approvers != "undefined" &&
-    //         this.usersObj.approvers.length > 0
-    //       ) {
-    //         this.approvalCnt = "Yes";
-    //       }
-    //     });
-    //     if (this.pagetitle == "Edit") {
-    //       this.curStatus = this.usersObj.status;
-    //       this.usersObj = Object.assign({}, this.userdata);
-    //       this.origEmail = this.usersObj.email;
-    //       this.getPeople(this.usersObj.id);
-    //       if (this.curStatus == "approved") {
-    //         this.editPage = true;
-    //       } else {
-    //         this.submitBtn = "Enable Account";
-    //       }
-    //       if (typeof this.usersObj.departments[0] !== "undefined") {
-    //         this.usersObj.approver = true;
-    //       }
-    //     }
-    //   });
-    // });
-  },
-  watch: {
-    userdata: {
-      handler: function handler(val) {
-        this.usersObj = Object.assign({}, this.userdata);
-      },
-      deep: true
-    },
-    dialogDelete: function dialogDelete(val) {
-      val || this.closeDelete();
     }
   }
 });
@@ -3017,9 +3079,6 @@ __webpack_require__.r(__webpack_exports__);
       this.status = false;
       this.$emit("response", true);
     }
-  },
-  created: function created() {
-    console.log(this.confOptions);
   }
 });
 
@@ -3307,6 +3366,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_NotFoundPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/admin/NotFoundPage */ "./resources/js/components/admin/NotFoundPage.vue");
 /* harmony import */ var _components_admin_users_Users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/admin/users/Users */ "./resources/js/components/admin/users/Users.vue");
 /* harmony import */ var _components_admin_users_EditUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/admin/users/EditUser */ "./resources/js/components/admin/users/EditUser.vue");
+/* harmony import */ var _components_admin_users_NewUser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/admin/users/NewUser */ "./resources/js/components/admin/users/NewUser.vue");
+
 
 
 
@@ -3337,6 +3398,10 @@ var routes = [
   path: "/d/users",
   component: _components_admin_users_Users__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: "Users"
+}, {
+  path: "/d/user/new",
+  component: _components_admin_users_NewUser__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: "NewUser"
 }, {
   path: "/d/user/edit/:id",
   component: _components_admin_users_EditUser__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -10305,6 +10370,45 @@ component.options.__file = "resources/js/components/admin/users/EditUser.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/users/NewUser.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/admin/users/NewUser.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewUser.vue?vue&type=template&id=fcea8cae& */ "./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae&");
+/* harmony import */ var _NewUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewUser.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__.render,
+  _NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/users/NewUser.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/users/UserForm.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/admin/users/UserForm.vue ***!
@@ -10596,6 +10700,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewUser.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/users/UserForm.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/admin/users/UserForm.vue?vue&type=script&lang=js& ***!
@@ -10774,6 +10894,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUser_vue_vue_type_template_id_1390bec7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUser_vue_vue_type_template_id_1390bec7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditUser.vue?vue&type=template&id=1390bec7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/EditUser.vue?vue&type=template&id=1390bec7&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewUser_vue_vue_type_template_id_fcea8cae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewUser.vue?vue&type=template&id=fcea8cae& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae&");
 
 
 /***/ }),
@@ -11527,12 +11664,37 @@ var render = function() {
     "div",
     [
       _c("user-form", {
-        attrs: { userdata: _vm.userData, pagetitle: _vm.pageTitle },
+        attrs: { userdata: _vm.userData, pagetitle: "edit" },
         on: { saved: _vm.savedResponse }
       })
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/users/NewUser.vue?vue&type=template&id=fcea8cae& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("user-form")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11578,10 +11740,10 @@ var render = function() {
           _c("v-row", [
             _c(
               "div",
-              { staticClass: "col-8" },
+              { staticClass: "col-12 col-md-8" },
               [
                 _c("ValidationObserver", {
-                  ref: "user_form_validation",
+                  ref: "user_form_observer",
                   scopedSlots: _vm._u([
                     {
                       key: "default",
@@ -11594,17 +11756,11 @@ var render = function() {
                             [
                               _c(
                                 "v-card",
+                                { attrs: { loading: _vm.loading } },
                                 [
                                   _c("v-card-title", [
                                     _c("h4", [
-                                      _vm._v(
-                                        "Edit " +
-                                          _vm._s(
-                                            _vm.usersObj
-                                              ? _vm.usersObj.first_name
-                                              : ""
-                                          )
-                                      )
+                                      _vm._v("Edit " + _vm._s(_vm.cardTitle))
                                     ])
                                   ]),
                                   _vm._v(" "),
@@ -11612,28 +11768,25 @@ var render = function() {
                                     "v-card-text",
                                     [
                                       _c("v-switch", {
+                                        staticStyle: { "max-width": "120px" },
                                         attrs: {
                                           color:
                                             "" +
-                                            (_vm.usersObj.status == "active"
+                                            (_vm.statusSwitch == true
                                               ? "success"
                                               : "grey"),
                                           label:
                                             "" +
-                                            (_vm.usersObj.status == "active"
+                                            (_vm.statusSwitch == true
                                               ? "Active"
                                               : "Disabled")
                                         },
                                         model: {
-                                          value: _vm.usersObj.status,
+                                          value: _vm.statusSwitch,
                                           callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.usersObj,
-                                              "status",
-                                              $$v
-                                            )
+                                            _vm.statusSwitch = $$v
                                           },
-                                          expression: "usersObj.status"
+                                          expression: "statusSwitch"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -11653,7 +11806,7 @@ var render = function() {
                                                     attrs: {
                                                       dense: "",
                                                       outlined: "",
-                                                      label: "First Name",
+                                                      label: "First Name *",
                                                       "error-messages": errors,
                                                       required: ""
                                                     },
@@ -11696,7 +11849,7 @@ var render = function() {
                                                     attrs: {
                                                       dense: "",
                                                       outlined: "",
-                                                      label: "Last Name",
+                                                      label: "Last Name *",
                                                       "error-messages": errors,
                                                       required: ""
                                                     },
@@ -11725,8 +11878,8 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("ValidationProvider", {
                                         attrs: {
-                                          rules: "required",
-                                          name: "Role"
+                                          rules: "required|email",
+                                          name: "Email"
                                         },
                                         scopedSlots: _vm._u(
                                           [
@@ -11735,13 +11888,86 @@ var render = function() {
                                               fn: function(ref) {
                                                 var errors = ref.errors
                                                 return [
-                                                  _c("v-text-field", {
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "d-flex" },
+                                                    [
+                                                      _c("v-text-field", {
+                                                        attrs: {
+                                                          dense: "",
+                                                          outlined: "",
+                                                          label: "Email *",
+                                                          "error-messages": _vm.emailExisted
+                                                            ? _vm.emailExisted
+                                                            : errors,
+                                                          required: ""
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.usersObj.email,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.$set(
+                                                              _vm.usersObj,
+                                                              "email",
+                                                              $$v
+                                                            )
+                                                          },
+                                                          expression:
+                                                            "usersObj.email"
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _vm.is_checking_mail ==
+                                                      true
+                                                        ? _c(
+                                                            "v-progress-circular",
+                                                            {
+                                                              staticClass:
+                                                                "ml-3 mt-2",
+                                                              attrs: {
+                                                                size: 25,
+                                                                width: 2,
+                                                                indeterminate:
+                                                                  "",
+                                                                color: "primary"
+                                                              }
+                                                            }
+                                                          )
+                                                        : _vm._e()
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      }),
+                                      _vm._v(" "),
+                                      _c("ValidationProvider", {
+                                        attrs: {
+                                          rules: "required",
+                                          name: "role"
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "default",
+                                              fn: function(ref) {
+                                                var errors = ref.errors
+                                                return [
+                                                  _c("v-autocomplete", {
                                                     attrs: {
                                                       dense: "",
+                                                      items: _vm.rolesArray,
+                                                      label: "Role *",
                                                       outlined: "",
-                                                      label: "Role",
-                                                      "error-messages": errors,
-                                                      required: ""
+                                                      required: "",
+                                                      "error-messages": errors
                                                     },
                                                     model: {
                                                       value: _vm.usersObj.role,
@@ -11754,50 +11980,6 @@ var render = function() {
                                                       },
                                                       expression:
                                                         "usersObj.role"
-                                                    }
-                                                  })
-                                                ]
-                                              }
-                                            }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      }),
-                                      _vm._v(" "),
-                                      _c("ValidationProvider", {
-                                        attrs: {
-                                          rules: "required|email",
-                                          name: "Email"
-                                        },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "default",
-                                              fn: function(ref) {
-                                                var errors = ref.errors
-                                                return [
-                                                  _c("v-text-field", {
-                                                    attrs: {
-                                                      dense: "",
-                                                      outlined: "",
-                                                      label: "Email",
-                                                      "error-messages": _vm.emailExisted
-                                                        ? _vm.emailExisted
-                                                        : errors,
-                                                      required: ""
-                                                    },
-                                                    model: {
-                                                      value: _vm.usersObj.email,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          _vm.usersObj,
-                                                          "email",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "usersObj.email"
                                                     }
                                                   })
                                                 ]
@@ -11854,30 +12036,32 @@ var render = function() {
                                       _c(
                                         "v-card-actions",
                                         [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                text: "",
-                                                color: "error"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.deleteRestoreUser()
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.usersObj.status ==
-                                                    "trashed"
-                                                    ? "restore"
-                                                    : "delete"
-                                                )
+                                          _vm.pagetitle == "edit"
+                                            ? _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    color: "error"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.deleteRestoreUser()
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.usersObj.status ==
+                                                        "trashed"
+                                                        ? "restore"
+                                                        : "delete"
+                                                    )
+                                                  )
+                                                ]
                                               )
-                                            ]
-                                          ),
+                                            : _vm._e(),
                                           _vm._v(" "),
                                           _c("v-spacer"),
                                           _vm._v(" "),
@@ -11888,9 +12072,7 @@ var render = function() {
                                               attrs: { disabled: !valid },
                                               on: {
                                                 click: function($event) {
-                                                  return _vm.submit(
-                                                    _vm.actionSave
-                                                  )
+                                                  return _vm.submit()
                                                 }
                                               }
                                             },
@@ -11922,8 +12104,6 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("snack-bar", { attrs: { "snackbar-options": _vm.sbOptions } }),
-      _vm._v(" "),
-      _c("dialog-loader", { attrs: { "loader-options": _vm.loaderOptions } }),
       _vm._v(" "),
       _c("confirmation-dialog", {
         attrs: { "conf-options": _vm.confOptions },
@@ -11996,7 +12176,7 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "secondary mb-5",
-                          attrs: { to: "users/new" }
+                          attrs: { to: "user/new" }
                         },
                         [_vm._v("New User")]
                       ),
