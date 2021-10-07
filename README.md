@@ -20,22 +20,25 @@ Laravel Starter Packs are ready to use laravel projects with pre-built admin das
 
 Laravel Vuetify is a starter pack with vue, vuetify and user management already installed.
 
+### Packages used
+- Vue 2 - https://vuejs.org/
+- Vue Router 3 - https://router.vuejs.org/
+- Vuex 3 - https://vuex.vuejs.org/
+- Vuetify - https://vuetifyjs.com/en/getting-started/installation/#vue-cli-install
+- Vee-validate 3 - https://vee-validate.logaretm.com/v3/guide/basics.html
+- @mdi/font - https://materialdesignicons.com/
+
 ### Usage
 
-- Clone this package
-`git clone https://github.com/mel-7/laravel-starter-packs.git` 
+- Clone this package `git clone https://github.com/mel-7/laravel-starter-packs.git` 
 
-- Run composer install
-`composer install`
+- Run composer install `composer install`
 
-- Run the migrations with seeder
-`php artisan migrate:fresh --seed`
+- Run the migrations with seeder `php artisan migrate:fresh --seed`
 
-- Run npm install
-`npm install`
+- Run npm install `npm install`
 
-- Compile the assets
-`npm run watch`, `npm run dev`, or `npm run prod`
+- Compile the assets `npm run watch`, `npm run dev`, or `npm run prod`
 
 ## License
 
