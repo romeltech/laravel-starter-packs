@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -58,16 +59,14 @@ class UserController extends Controller
             if(isset($request['email'])){
                 $arrDetail = array(
                     'email' => $request['email'],
-                    'first_name' => $request['first_name'],
-                    'last_name' => $request['last_name'],
+                    'full_name' => $request['full_name'],
                     'phone' => $request['phone'],
                     'role' => $request['role'],
                     'status' => $request['status']
                 );
             }else{
                 $arrDetail = array(
-                    'first_name' => $request['first_name'],
-                    'last_name' => $request['last_name'],
+                    'full_name' => $request['full_name'],
                     'phone' => $request['phone'],
                     'role' => $request['role'],
                     'status' => $request['status'],
@@ -80,8 +79,7 @@ class UserController extends Controller
             $password = bcrypt(Str::random());
             $arrDetail = array(
                 'email' => $request['email'],
-                'first_name' => $request['first_name'],
-                'last_name' => $request['last_name'],
+                'full_name' => $request['full_name'],
                 'password' => $password,
                 'phone' => $request['phone'],
                 'role' => $request['role'],
@@ -101,6 +99,22 @@ class UserController extends Controller
         return response()->json([
             'type' => gettype($user),
             'email_existed' => isset($user->email) ? true : false
+        ], 200);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'password' => 'required|confirmed|min:9',
+        ]);
+        $user = User::where('id', $request['id'])->first();
+        if($user){
+            $user->update([
+                'password' => Hash::make($request['password'])
+            ]);
+        }
+        return response()->json([
+            'message' => "Password has been updated"
         ], 200);
     }
 }

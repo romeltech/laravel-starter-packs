@@ -19,49 +19,45 @@
                     :color="`${statusSwitch == true ? 'success' : 'grey'}`"
                     :label="`${statusSwitch == true ? 'Active' : 'Disabled'}`"
                   ></v-switch>
-                  <!-- <ValidationProvider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Username"
-                  >
-                    <div class="d-flex">
-                      <v-text-field
-                        autofocus
-                        dense
-                        outlined
-                        v-model="usersObj.username"
-                        label="Username *"
-                        :error-messages="errors"
-                        required
-                      ></v-text-field>
-                    </div>
-                  </ValidationProvider> -->
                   <ValidationProvider
                     v-slot="{ errors }"
                     rules="required"
-                    name="Full Name"
+                    name="First Name"
                   >
                     <v-text-field
                       dense
                       outlined
-                      v-model="usersObj.full_name"
-                      label="Full Name *"
+                      v-model="usersObj.first_name"
+                      label="First Name *"
                       :error-messages="errors"
                       required
                     ></v-text-field>
                   </ValidationProvider>
                   <ValidationProvider
                     v-slot="{ errors }"
-                    rules="email"
+                    rules="required"
+                    name="Last Name"
+                  >
+                    <v-text-field
+                      dense
+                      outlined
+                      v-model="usersObj.last_name"
+                      label="Last Name *"
+                      :error-messages="errors"
+                      required
+                    ></v-text-field>
+                  </ValidationProvider>
+                  <ValidationProvider
+                    v-slot="{ errors }"
+                    rules="required|email"
                     name="Email"
                   >
                     <div class="d-flex">
                       <v-text-field
-                        autocomplete="false"
                         dense
                         outlined
                         v-model="usersObj.email"
-                        label="Email"
+                        label="Email *"
                         :error-messages="emailExisted ? emailExisted : errors"
                         required
                       ></v-text-field>
@@ -91,59 +87,32 @@
                     >
                     </v-autocomplete>
                   </ValidationProvider>
-                  <ValidationProvider v-slot="{ errors }" rules="" name="Phone">
+                  <ValidationProvider
+                    v-slot="{ errors }"
+                    rules="numeric|min:7|max:15"
+                    name="Phone Number"
+                  >
                     <v-text-field
                       dense
-                      outlined
+                      type="number"
                       v-model="usersObj.phone"
-                      label="Phone"
+                      label="Phone Number"
+                      outlined
                       :error-messages="errors"
                     ></v-text-field>
                   </ValidationProvider>
-                  <div v-if="pagetitle !== 'edit'">
-                    <ValidationProvider
-                      v-slot="{ errors }"
-                      :rules="`${pagetitle == 'edit' ? '' : 'required|min:9'}`"
-                      name="Password"
-                    >
-                      <v-text-field
-                        dense
-                        type="password"
-                        v-model="usersObj.password"
-                        label="Password *"
-                        outlined
-                        :required="pagetitle == 'edit' ? false : true"
-                        name="password"
-                        :error-messages="errors"
-                      ></v-text-field>
-                    </ValidationProvider>
-                    <ValidationProvider
-                      v-slot="{ errors }"
-                      rules="required|confirmed:Password"
-                      name="Password Confirmation"
-                    >
-                      <v-text-field
-                        dense
-                        type="password"
-                        v-model="usersObj.password_confirmation"
-                        label="Confirm Password *"
-                        name="password_confirmation"
-                        required
-                        outlined
-                        :error-messages="errors"
-                      ></v-text-field>
-                    </ValidationProvider>
-                  </div>
                   <v-card-actions>
                     <v-btn
                       v-if="pagetitle == 'edit'"
                       text
                       color="error"
-                      @click="deleteUser()"
-                      >delete</v-btn
+                      @click="deleteRestoreUser()"
+                      >{{
+                        usersObj.status == "trashed" ? "restore" : "delete"
+                      }}</v-btn
                     >
                     <v-spacer></v-spacer>
-                    <v-btn class="primary" :disabled="!valid" @click="submit"
+                    <v-btn class="primary" :disabled="!valid" @click="submit()"
                       >Save</v-btn
                     >
                   </v-card-actions>
@@ -151,9 +120,6 @@
               </v-card>
             </v-form>
           </ValidationObserver>
-        </div>
-        <div v-if="pagetitle === 'edit'" class="col-12 col-md-4">
-          <ChangePassword :user="userdata" />
         </div>
       </v-row>
     </v-container>
@@ -170,12 +136,10 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from "vee-validate/dist/vee-validate.full";
-import ChangePassword from "./ChangePassword.vue";
 export default {
   components: {
     ValidationProvider,
     ValidationObserver,
-    ChangePassword,
   },
   props: {
     userdata: {
@@ -190,7 +154,7 @@ export default {
   data() {
     return {
       statusSwitch: true,
-      rolesArray: ["admin", "staff"],
+      rolesArray: ["admin", "editor"],
       actionSave: this.pagetitle,
       cardTitle: "New user",
       emailExisted: "",
@@ -211,7 +175,7 @@ export default {
         if (val != oldVal) {
           this.usersObj = Object.assign({}, val);
           this.origEmail = val.email;
-          this.cardTitle = val.full_name;
+          this.cardTitle = val.first_name + " " + val.last_name;
           this.statusSwitch = val.status == "active" ? true : false;
         }
         this.loading = false;
@@ -275,7 +239,7 @@ export default {
             this.sbOptions = {
               status: true,
               type: "success",
-              text: "User has been saved",
+              text: "Success! Data has been saved",
             };
             if (this.pagetitle == "edit") {
               this.$emit("saved", true);
@@ -284,7 +248,6 @@ export default {
                 this.loading = false;
                 this.usersObj = {};
                 this.$refs.user_form_observer.reset();
-                this.$router.push({ name: "Users" });
               });
             }
           })
@@ -299,53 +262,38 @@ export default {
           });
       });
     },
-    deleteUser() {
+    deleteRestoreUser() {
+      let action = this.usersObj.status == "trashed" ? "active" : "trashed";
+      let btnText = this.usersObj.status == "trashed" ? "restore" : "delete";
+      this.newStatus = this.usersObj.status == "trashed" ? "active" : "trashed";
       this.confOptions = {
         status: true,
         title: "Confirm",
-        msg: "Please confirm that you want to delete this account.",
-        btnTitle: "delete",
-        action: "delete",
+        msg: "Please confirm that you want to " + btnText + " this account.",
+        btnTitle: btnText,
+        action: action,
       };
     },
     confResponse(value) {
       if (value == true) {
-        axios
-          .post("/d/user/delete/" + this.usersObj.id)
-          .then((response) => {
-            this.$emit("saved", true);
-            this.sbOptions = {
-              status: true,
-              type: "success",
-              text: "User has been deleted",
-            };
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-            this.loading = false;
-            this.sbOptions = {
-              status: true,
-              type: "error",
-              text: err.response.data.message,
-            };
-          });
+        this.updateUserStatus();
       }
     },
-    // updateUserStatus() {
-    //   this.loading = true;
-    //   let data = {
-    //     id: this.usersObj.id,
-    //     status: this.newStatus,
-    //   };
-    //   axios.post("/d/user/status/update", data).then((response) => {
-    //     this.$emit("saved", true);
-    //     this.sbOptions = {
-    //       status: true,
-    //       type: "success",
-    //       text: "User has been updated",
-    //     };
-    //   });
-    // },
+    updateUserStatus() {
+      this.loading = true;
+      let data = {
+        id: this.usersObj.id,
+        status: this.newStatus,
+      };
+      axios.post("/d/user/status/update", data).then((response) => {
+        this.$emit("saved", true);
+        this.sbOptions = {
+          status: true,
+          type: "success",
+          text: "User has been updated",
+        };
+      });
+    },
   },
 };
 </script>

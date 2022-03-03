@@ -63,8 +63,7 @@ export default {
       pageLoading: true,
       search: "",
       headers: [
-        { text: "First Name", value: "first_name" },
-        { text: "Last Name", value: "last_name" },
+        { text: "Full Name", value: "full_name" },
         { text: "Email", value: "email" },
         { text: "Phone", value: "phone" },
         { text: "Role", value: "role" },

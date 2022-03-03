@@ -14,8 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = new \App\Models\User([
-            'first_name' => 'GAG',
-            'last_name'  => 'Super Admin',
+            'full_name' => 'GAG Super Admin',
             'email'      => 'admin@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
@@ -25,9 +24,8 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->save();
         $user = new \App\Models\User([
-            'first_name' => 'First',
-            'last_name'  => 'Account',
-            'email'      => 'first@admin.com',
+            'full_name' => 'Editor Account',
+            'email'      => 'editor@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
             'status'     => 'disabled', // active, disabled, trashed
@@ -36,9 +34,8 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->save();
         $user = new \App\Models\User([
-            'first_name' => 'Second',
-            'last_name'  => 'Account',
-            'email'      => 'second@admin.com',
+            'full_name' => 'Another Editor Account',
+            'email'      => 'editor2@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
             'status'     => 'trashed', // active, disabled, trashed

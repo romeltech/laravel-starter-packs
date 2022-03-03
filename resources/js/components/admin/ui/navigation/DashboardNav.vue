@@ -11,33 +11,18 @@
       dark
     >
       <div width="100%" class="text-center pa-3">
-        <v-avatar size="150">
+        <!-- <v-avatar size="150">
           <v-img :src="profileImagePath"></v-img>
+        </v-avatar> -->
+        <v-avatar size="70" color="white" class="text-uppercase text-h5 my-5">
+          {{ printInitials(authenticated_user.full_name) }}
         </v-avatar>
-        <div class="overline white--text">
-          {{
-            authenticated_user.first_name + " " + authenticated_user.last_name
-          }}
+        <div class="text-h6 text-uppercase white--text">
+          {{ authenticated_user.full_name }}
         </div>
-        <div v-if="authenticated_user.status == 'pending'">
-          <small class="white--text">Account</small>
-          <v-chip class="ma-2" small color="red" text-color="white">
-            Pending
-          </v-chip>
-        </div>
-        <div v-else>
-          <div v-if="authenticated_user.role != 'supplier'">
-            <small class="white--text text-capitalize"
-              >{{ authenticated_user.role }} Account</small
-            >
-          </div>
-          <div v-else>
-            <small class="white--text">Account</small>
-            <v-chip class="ma-2" small color="success" text-color="white">
-              Approved
-            </v-chip>
-          </div>
-        </div>
+        <small class="white--text text-capitalize"
+          >{{ authenticated_user.role }} Account</small
+        >
       </div>
       <v-divider></v-divider>
       <v-list dense rounded>
@@ -80,22 +65,30 @@
       >
         <template v-slot:activator="{ on }">
           <v-btn text icon v-on="on">
-            <v-avatar size="30">
+            <!-- <v-avatar size="30">
               <img :src="profileImagePath" />
+            </v-avatar> -->
+            <v-avatar
+              size="30"
+              color="#eee"
+              class="text-uppercase text-subtitle"
+            >
+              {{ printInitials(authenticated_user.full_name) }}
             </v-avatar>
           </v-btn>
         </template>
         <v-card>
           <v-list>
             <v-list-item>
-              <v-list-item-avatar>
+              <!-- <v-list-item-avatar color="#eee">
                 <img :src="profileImagePath" />
+              </v-list-item-avatar> -->
+              <v-list-item-avatar color="#eee">
+                {{ printInitials(authenticated_user.full_name) }}
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>{{
-                  authenticated_user.first_name +
-                  " " +
-                  authenticated_user.last_name
+                  authenticated_user.full_name
                 }}</v-list-item-title>
                 <v-list-item-subtitle>{{
                   authenticated_user.email
@@ -135,11 +128,11 @@ export default {
           icon: "mdi-home-outline",
           location: "/d/dashboard",
         },
-        {
-          title: "Profile",
-          icon: "mdi-account",
-          location: "/d/profile",
-        },
+        // {
+        //   title: "Profile",
+        //   icon: "mdi-account",
+        //   location: "/d/profile",
+        // },
       ],
       adminNav: [
         {
@@ -147,27 +140,36 @@ export default {
           icon: "mdi-account-group-outline",
           location: "/d/users",
         },
-        {
-          title: "Settings",
-          icon: "mdi-cog-outline",
-          location: "/d/settings",
-          subs: [
-            {
-              title: "Companies",
-              icon: "mdi-store-outline",
-              location: "/d/companies",
-            },
-            {
-              title: "Departments",
-              icon: "mdi-account-supervisor-circle-outline",
-              location: "/d/departments",
-            },
-          ],
-        },
+        // {
+        //   title: "Settings",
+        //   icon: "mdi-cog-outline",
+        //   location: "/d/settings",
+        //   subs: [
+        //     {
+        //       title: "Companies",
+        //       icon: "mdi-store-outline",
+        //       location: "/d/companies",
+        //     },
+        //     {
+        //       title: "Departments",
+        //       icon: "mdi-account-supervisor-circle-outline",
+        //       location: "/d/departments",
+        //     },
+        //   ],
+        // },
       ],
     };
   },
   methods: {
+    printInitials: function (text) {
+      return text
+        .split(" ")
+        .slice(0, 2)
+        .join(" ")
+        .split(" ")
+        .map((n) => n[0])
+        .join("");
+    },
     logout: function (event) {
       event.preventDefault();
       document.getElementById("logout-form").submit();

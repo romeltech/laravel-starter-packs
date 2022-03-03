@@ -1,65 +1,59 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
+    <div class="container-fluid py-16 d-flex flex-column align-center gag-container-bg">
+        <div class="col-12 col-sm-6 col-md-4">
+            <v-card id="loginform" class="px-5">
+                <v-card-title class="px-5 pt-8 pb-0">{{ __('Reset Password') }}</v-card-title>
+                <v-card-text class="py-5">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
-
                         <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
+                        {{-- v-model="loginEmail" --}}
+                        {{-- :rules="loginEmailrules"  --}}
+                        <v-text-field outlined required autocomplete="false" id="email" type="email" name="email"
+                            label="{{ __('E-Mail Address') }}"
+                            autofocus
+                            value="{{ $email ?? old('email') }}" @error('email') autofocus error
+                            error-messages="{{ $message }}" @enderror>
+                        </v-text-field>
+                        {{-- v-model="loginPassword"  --}}
+                        {{-- :rules="loginPasswordrules" --}}
+                        <v-text-field
+                            outlined
+                            required
+                            autocomplete="off"
+                            id="password"
+                            label="{{ __('Password') }}"
+                            type="password"
+                            name="password"
+                            @error('password') error error-messages="{{ $message }}" @enderror>
+                        </v-text-field>
+                        <v-text-field
+                            outlined
+                            required
+                            autocomplete="confirm-password"
+                            id="password-confirm"
+                            label="{{ __('Confirm Password') }}"
+                            type="password"
+                            name="password_confirmation"
+                            >
+                        </v-text-field>
+                        <v-btn
+                            class="mb-3 primary"
+                            type="submit"
+                            >
+                            {{ __('Reset Password') }}
+                        </v-btn>
                     </form>
-                </div>
-            </div>
+                    @if (session('status'))
+                        <v-alert class="mt-3" dense text type="success">
+                            {{ session('status') }}
+                        </v-alert>
+                    @endif
+                </v-card-text>
+            </v-card>
         </div>
     </div>
-</div>
 @endsection
