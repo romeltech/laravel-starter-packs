@@ -24,8 +24,8 @@ Auth::routes([
     //'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
-Route::get('/', function () { return redirect('/d/dashboard');});
-Route::get('/home', function () { return redirect('/d/dashboard');});
+Route::get('/', [DashboardController::class, 'home'])->name('home');
+Route::get('/home', [DashboardController::class, 'home'])->name('home');
 Route::group(['prefix'=>'d','as'=>'dashboard.', 'middleware' => 'auth'], function(){
 
     /**
@@ -43,6 +43,7 @@ Route::group(['prefix'=>'d','as'=>'dashboard.', 'middleware' => 'auth'], functio
     Route::get('/user/get/{id}', [UserController::class, 'getSingleUser'])->name('user.get.single');
     Route::post('/user/status/update', [UserController::class, 'updateUserStatus'])->name('user.status.update');
     Route::post('/user/save', [UserController::class, 'saveUserData'])->name('user.save.data');
-    Route::post('/user/check/email', [UserController::class, 'checkEmail'])->name('user.check.email');
+    // Route::post('/user/check/email', [UserController::class, 'checkEmail'])->name('user.check.email');
+    // Route::post('/user/check/username', [UserController::class, 'checkUsername'])->name('user.check.username');
     Route::post('/user/changepassword', [UserController::class, 'changePassword'])->name('user.change.password');
 });

@@ -55,39 +55,40 @@ class UserController extends Controller
     {
         $resStatus = 200;
         $arrDetail = array();
+        $msg = "";
+
+        // Validate username and email for duplicate
+        $validated = $request->validate([
+            'username' => 'unique:users,username,'.$request['id'],
+            'email' => 'unique:users,email,'.$request['id'],
+            'password' => 'sometimes|confirmed|min:9',
+        ]);
+
+        // Setup array
+        $arrDetail = array(
+            'password' => bcrypt($request['password']),
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'full_name' => $request['full_name'],
+            'phone' => $request['phone'],
+            'role' => $request['role'],
+            'status' => $request['status'],
+        );
+
         if(isset($request['id'])){
-            if(isset($request['email'])){
-                $arrDetail = array(
-                    'email' => $request['email'],
-                    'full_name' => $request['full_name'],
-                    'phone' => $request['phone'],
-                    'role' => $request['role'],
-                    'status' => $request['status']
-                );
-            }else{
-                $arrDetail = array(
-                    'full_name' => $request['full_name'],
-                    'phone' => $request['phone'],
-                    'role' => $request['role'],
-                    'status' => $request['status'],
-                );
-            }
-            $user = User::where('id', $request['id'])->first();
-            $user->update($arrDetail);
+            // update user if has ID
+            array_splice($arrDetail, 0, 1); // remove password
+            $user = User::where('id', $request['id'])->update($arrDetail);
             $msg = "User has been updated";
         }else{
-            $password = bcrypt(Str::random());
-            $arrDetail = array(
-                'email' => $request['email'],
-                'full_name' => $request['full_name'],
-                'password' => $password,
-                'phone' => $request['phone'],
-                'role' => $request['role'],
-                'status' => 'active',
-            );
-            $users = User::create($arrDetail);
-            $msg = "User has been added";
+            // create user
+            array_merge($arrDetail, array('password' => bcrypt($request['password'])));
+            // array_merge($arrDetail, array('password' => Hash::make($request['password'])));
+            array_values($arrDetail);
+            $user = User::create($arrDetail);
+            $msg = "User has been created";
         }
+
         return response()->json([
             'message' => $msg
         ], $resStatus);

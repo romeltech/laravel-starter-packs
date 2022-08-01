@@ -14,32 +14,32 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = new \App\Models\User([
-            'full_name' => 'GAG Super Admin',
+            'full_name'  => 'GAG Super Admin',
+            'username'   => 'gaadmin',
             'email'      => 'admin@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
             'status'     => 'active', // active, disabled, trashed
-            'company_id' => 1,
             'role'       => 'admin'
         ]);
         $user->save();
         $user = new \App\Models\User([
-            'full_name' => 'Editor Account',
+            'full_name'  => 'Editor Account',
+            'username'   => 'editor',
             'email'      => 'editor@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
             'status'     => 'disabled', // active, disabled, trashed
-            'company_id' => 1,
             'role'       => 'editor'
         ]);
         $user->save();
         $user = new \App\Models\User([
-            'full_name' => 'Another Editor Account',
+            'full_name'  => 'Another Editor Account',
+            'username'   => 'editor2',
             'email'      => 'editor2@admin.com',
             'password'   => bcrypt('gag@112211'),
             'phone'      => '05012345678',
             'status'     => 'trashed', // active, disabled, trashed
-            'company_id' => 1,
             'role'       => 'editor'
         ]);
         $user->save();

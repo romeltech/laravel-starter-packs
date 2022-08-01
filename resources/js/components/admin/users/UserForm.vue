@@ -19,23 +19,23 @@
                     :color="`${statusSwitch == true ? 'success' : 'grey'}`"
                     :label="`${statusSwitch == true ? 'Active' : 'Disabled'}`"
                   ></v-switch>
-                  <!-- <ValidationProvider
+                  <ValidationProvider
                     v-slot="{ errors }"
                     rules="required"
                     name="Username"
                   >
-                    <div class="d-flex">
-                      <v-text-field
-                        autofocus
-                        dense
-                        outlined
-                        v-model="usersObj.username"
-                        label="Username *"
-                        :error-messages="errors"
-                        required
-                      ></v-text-field>
-                    </div>
-                  </ValidationProvider> -->
+                    <v-text-field
+                      autofocus
+                      dense
+                      outlined
+                      v-model="usersObj.username"
+                      label="Username *"
+                      :error-messages="
+                        usernameExisted ? usernameExisted : errors
+                      "
+                      required
+                    ></v-text-field>
+                  </ValidationProvider>
                   <ValidationProvider
                     v-slot="{ errors }"
                     rules="required"
@@ -55,25 +55,15 @@
                     rules="email"
                     name="Email"
                   >
-                    <div class="d-flex">
-                      <v-text-field
-                        autocomplete="false"
-                        dense
-                        outlined
-                        v-model="usersObj.email"
-                        label="Email"
-                        :error-messages="emailExisted ? emailExisted : errors"
-                        required
-                      ></v-text-field>
-                      <v-progress-circular
-                        v-if="is_checking_mail == true"
-                        :size="25"
-                        :width="2"
-                        indeterminate
-                        color="primary"
-                        class="ml-3 mt-2"
-                      ></v-progress-circular>
-                    </div>
+                    <v-text-field
+                      autocomplete="false"
+                      dense
+                      outlined
+                      v-model="usersObj.email"
+                      label="Email"
+                      :error-messages="emailExisted ? emailExisted : errors"
+                      required
+                    ></v-text-field>
                   </ValidationProvider>
                   <ValidationProvider
                     v-slot="{ errors }"
@@ -143,7 +133,11 @@
                       >delete</v-btn
                     >
                     <v-spacer></v-spacer>
-                    <v-btn class="primary" :disabled="!valid" @click="submit"
+                    <v-btn
+                      class="primary"
+                      :loading="loading"
+                      :disabled="!valid"
+                      @click="submit"
                       >Save</v-btn
                     >
                   </v-card-actions>
@@ -194,15 +188,14 @@ export default {
       actionSave: this.pagetitle,
       cardTitle: "New user",
       emailExisted: "",
+      usernameExisted: "",
       usersObj: {},
-      origEmail: this.userdata ? this.userdata.email : "",
+      origUserData: this.userdata,
       newStatus: "",
       // ui
-      is_checking_mail: false,
       sbOptions: {},
       confOptions: {},
       loading: this.userdata ? true : false,
-      email_already_exists: false,
     };
   },
   watch: {
@@ -210,7 +203,7 @@ export default {
       handler(val, oldVal) {
         if (val != oldVal) {
           this.usersObj = Object.assign({}, val);
-          this.origEmail = val.email;
+          this.origUserData = val;
           this.cardTitle = val.full_name;
           this.statusSwitch = val.status == "active" ? true : false;
         }
@@ -220,84 +213,52 @@ export default {
     },
   },
   methods: {
-    async emailCheck() {
-      if (this.usersObj.email) {
-        this.is_checking_mail = true;
-        await axios
-          .post("/d/user/check/email", {
-            email: this.usersObj.email,
-          })
-          .then((response) => {
-            if (response.data.email_existed == true) {
-              this.email_already_exists = true;
-              this.emailExisted = "Email already registered"; // Set error message
-            } else {
-              this.email_already_exists = false;
-              this.emailExisted = ""; // Empty error message
-            }
-            this.is_checking_mail = false;
-          })
-          .catch((err) => {
-            console.log("Email Check Error");
-            console.log(err.response);
-            this.is_checking_mail = false;
-          });
-      }
-    },
     submit() {
       this.loading = true;
 
       // Set status value
       this.usersObj.status = this.statusSwitch == true ? "active" : "disabled";
-
-      // Check if the email is changed
-      if (this.usersObj.email == this.origEmail) {
-        delete this.usersObj["email"];
-      }
-
-      // Check the email if exists
-      this.emailCheck().then(() => {
-        // Set error message if email already exists
-        if (this.email_already_exists == true) {
+      console.log(this.usersObj);
+      // Send data to save
+      axios
+        .post("/d/user/save", this.usersObj)
+        .then((response) => {
+          this.sbOptions = {
+            status: true,
+            type: "success",
+            text: "User has been saved",
+          };
+          if (this.pagetitle == "edit") {
+            this.$emit("saved", true);
+          } else {
+            this.$nextTick(() => {
+              this.loading = false;
+              this.usersObj = {};
+              this.$refs.user_form_observer.reset();
+              this.$router.push({ name: "Users" });
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          console.log(err.response.data);
+          let errMsg = "Error saving data";
+          if (err.response.status == 422) {
+            errMsg = err.response.data.message;
+            if (err.response.data.errors.hasOwnProperty("username")) {
+              this.usernameExisted = err.response.data.errors.username;
+            }
+            if (err.response.data.errors.hasOwnProperty("email")) {
+              this.emailExisted = err.response.data.errors.email;
+            }
+          }
           this.sbOptions = {
             status: true,
             type: "error",
-            text: "Email already registered",
+            text: errMsg,
           };
           this.loading = false;
-          return false;
-        }
-
-        // Send data to save
-        axios
-          .post("/d/user/save", this.usersObj)
-          .then((response) => {
-            this.sbOptions = {
-              status: true,
-              type: "success",
-              text: "User has been saved",
-            };
-            if (this.pagetitle == "edit") {
-              this.$emit("saved", true);
-            } else {
-              this.$nextTick(() => {
-                this.loading = false;
-                this.usersObj = {};
-                this.$refs.user_form_observer.reset();
-                this.$router.push({ name: "Users" });
-              });
-            }
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-            this.loading = false;
-            this.sbOptions = {
-              status: true,
-              type: "error",
-              text: "Error saving data",
-            };
-          });
-      });
+        });
     },
     deleteUser() {
       this.confOptions = {
@@ -331,21 +292,6 @@ export default {
           });
       }
     },
-    // updateUserStatus() {
-    //   this.loading = true;
-    //   let data = {
-    //     id: this.usersObj.id,
-    //     status: this.newStatus,
-    //   };
-    //   axios.post("/d/user/status/update", data).then((response) => {
-    //     this.$emit("saved", true);
-    //     this.sbOptions = {
-    //       status: true,
-    //       type: "success",
-    //       text: "User has been updated",
-    //     };
-    //   });
-    // },
   },
 };
 </script>

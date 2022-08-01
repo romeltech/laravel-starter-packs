@@ -51,7 +51,7 @@ Vue.use(helpers_plugin);
  */
 Vue.component(
     "dashboard-nav",
-    require("./components/admin/ui/navigation/DashboardNav.vue").default
+    require("./components/common/navigation/DashboardNav.vue").default
 );
 Vue.component("snack-bar", require("./components/common/SnackBar.vue").default);
 Vue.component("dialog-loader", require("./components/common/DialogLoader.vue").default);
@@ -75,7 +75,7 @@ store.dispatch("fetchAuthUser").then(() => {
                 loginEmail: "",
                 loginEmailrules: [
                     value => !!value || "Required",
-                    value => /.+@.+\..+/.test(value) || "E-mail must be valid"
+                    // value => /.+@.+\..+/.test(value) || "E-mail must be valid"
                 ],
                 loginPassword: "",
                 loginPasswordrules: [
