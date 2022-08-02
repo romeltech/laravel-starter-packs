@@ -15,7 +15,9 @@ class UserController extends Controller
         /**
          * Get the user object
          */
-        $user = auth()->user()->load(['profile']); // add the related model here
+        if(!Auth::guest()){
+            $user = auth()->user()->load(['profile']); // add the related model here}
+        }
         return response()->json([
             'user' => isset($user) ? $user : null,
         ], 200);
