@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -46,4 +47,9 @@ Route::group(['prefix'=>'d','as'=>'dashboard.', 'middleware' => 'auth'], functio
     // Route::post('/user/check/email', [UserController::class, 'checkEmail'])->name('user.check.email');
     // Route::post('/user/check/username', [UserController::class, 'checkUsername'])->name('user.check.username');
     Route::post('/user/changepassword', [UserController::class, 'changePassword'])->name('user.change.password');
+
+    /**
+     * Profiles
+     */
+    Route::post('/profile/save', [ProfileController::class, 'saveProfile'])->name('user.profile');
 });

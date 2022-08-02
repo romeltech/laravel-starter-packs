@@ -15,13 +15,13 @@
           <v-img :src="profileImagePath"></v-img>
         </v-avatar> -->
         <v-avatar size="70" color="white" class="text-uppercase text-h5 my-5">
-          {{ printInitials(authenticated_user.full_name) }}
+          {{ printInitials(auth_user.profile.full_name) }}
         </v-avatar>
         <div class="text-h6 text-uppercase white--text">
-          {{ authenticated_user.full_name }}
+          {{ auth_user.full_name }}
         </div>
         <small class="white--text text-capitalize"
-          >{{ authenticated_user.role }} Account</small
+          >{{ auth_user.role }} Account</small
         >
       </div>
       <v-divider></v-divider>
@@ -34,7 +34,7 @@
           :nav="item"
         ></nav-item>
         <!-- Admin -->
-        <div v-if="authenticated_user.role == 'admin'">
+        <div v-if="auth_user.role == 'admin'">
           <nav-item
             v-for="item in adminNav"
             :key="item.title"
@@ -51,7 +51,7 @@
       <v-toolbar-title class="pl-1 mr-12 align-center d-flex">
         <v-img max-width="25" :src="`${$baseUrl + '/images/fav.png'}`"> </v-img>
         <span class="ml-2 title primary--text text-capitalize"
-          >{{ authenticated_user.role }} Panel</span
+          >{{ auth_user.role }} Panel</span
         >
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -73,7 +73,7 @@
               color="#eee"
               class="text-uppercase text-subtitle"
             >
-              {{ printInitials(authenticated_user.full_name) }}
+              {{ printInitials(auth_user.profile.full_name) }}
             </v-avatar>
           </v-btn>
         </template>
@@ -84,14 +84,12 @@
                 <img :src="profileImagePath" />
               </v-list-item-avatar> -->
               <v-list-item-avatar color="#eee">
-                {{ printInitials(authenticated_user.full_name) }}
+                {{ printInitials(auth_user.profile.full_name) }}
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>{{
-                  authenticated_user.full_name
-                }}</v-list-item-title>
+                <v-list-item-title>{{ auth_user.profile.full_name }}</v-list-item-title>
                 <v-list-item-subtitle>{{
-                  authenticated_user.email
+                  auth_user.email
                 }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -107,6 +105,8 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useAuthUserStore } from "../../../stores/authUser";
 import NavItem from "./NavItem";
 export default {
   components: {
@@ -114,12 +114,6 @@ export default {
   },
   data() {
     return {
-      authenticated_user: this.$store.state.authUser.userObject,
-      profileImagePath: this.$store.state.authUser.userObject.profile_image
-        ? window.location.origin +
-          "/file/" +
-          this.$store.state.authUser.userObject.profile_image.path
-        : window.location.origin + "/images/placeholder-user.png",
       drawer: true,
       menu: false,
       commonNav: [
@@ -160,16 +154,11 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState(useAuthUserStore, ["auth_user"]),
+    // ...mapState(useAuthUserStore, ["authUserObj"]),
+  },
   methods: {
-    printInitials: function (text) {
-      return text
-        .split(" ")
-        .slice(0, 2)
-        .join(" ")
-        .split(" ")
-        .map((n) => n[0])
-        .join("");
-    },
     logout: function (event) {
       event.preventDefault();
       document.getElementById("logout-form").submit();

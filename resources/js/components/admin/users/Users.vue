@@ -63,9 +63,9 @@ export default {
       pageLoading: true,
       search: "",
       headers: [
-        { text: "Full Name", value: "full_name" },
+        { text: "Full Name", value: "profile.full_name" },
         { text: "Email", value: "email" },
-        { text: "Phone", value: "phone" },
+        { text: "Phone", value: "account_phone" },
         { text: "Role", value: "role" },
         { text: "Status", value: "status" },
         { text: "Actions", align: "end", value: "actions", sortable: false },

@@ -12,36 +12,25 @@ class UserController extends Controller
 {
     public function getAuthenticatedUser()
     {
-        $access = "";
-        if(Auth::guest()){
-            $access = "guest";
-        }else{
-            $user = User::where('id', auth()->user()->id)->first();
-
-            if(isset($user)){
-                if($user->role == 'admin'){
-                    $access = "admin";
-                }else{
-                    $access = "employee";
-                }
-            }
-        }
+        /**
+         * Get the user object
+         */
+        $user = auth()->user()->load(['profile']); // add the related model here
         return response()->json([
             'user' => isset($user) ? $user : null,
-            'user_access' => $access,
         ], 200);
     }
 
     public function getAllUsers()
     {
         // Fetch All Users
-        $users = User::all();
+        $users = User::with('profile')->get();
         return response()->json($users, 200);
     }
 
     public function getSingleUser($id)
     {
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::where('id', $id)->with('profile')->firstOrFail();
         return response()->json($user, 200);
     }
 
@@ -69,8 +58,7 @@ class UserController extends Controller
             'password' => bcrypt($request['password']),
             'username' => $request['username'],
             'email' => $request['email'],
-            'full_name' => $request['full_name'],
-            'phone' => $request['phone'],
+            'account_phone' => $request['account_phone'],
             'role' => $request['role'],
             'status' => $request['status'],
         );
@@ -86,6 +74,10 @@ class UserController extends Controller
             // array_merge($arrDetail, array('password' => Hash::make($request['password'])));
             array_values($arrDetail);
             $user = User::create($arrDetail);
+            $user->profile()->create([
+                'full_name' => $request['full_name'],
+                'ecode' => $request['ecode'],
+            ]);
             $msg = "User has been created";
         }
 

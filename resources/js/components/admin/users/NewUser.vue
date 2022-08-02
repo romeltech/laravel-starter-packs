@@ -1,6 +1,17 @@
 <template>
   <div>
-    <user-form></user-form>
+    <v-app-bar color="white" dense class="elevation-0">
+      <v-toolbar-title class="overline"
+        >New User</v-toolbar-title
+      >
+    </v-app-bar>
+    <v-container class="py-8">
+      <v-row>
+        <div class="col-12">
+          <user-form></user-form>
+        </div>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
