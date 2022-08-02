@@ -23,7 +23,8 @@ Laravel Vuetify is a starter pack with vue, vuetify and user management already 
 ### Packages used
 - Vue 2 - https://vuejs.org/
 - Vue Router 3 - https://router.vuejs.org/
-- Vuex 3 - https://vuex.vuejs.org/
+- Vuex 3 - https://vuex.vuejs.org/ (removed)
+- Pinia - https://pinia.vuejs.org/
 - Vuetify - https://vuetifyjs.com/en/getting-started/installation/#vue-cli-install
 - Vee-validate 3 - https://vee-validate.logaretm.com/v3/guide/basics.html
 - @mdi/font - https://materialdesignicons.com/
