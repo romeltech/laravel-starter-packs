@@ -20,26 +20,16 @@
         <div class="text-h6 text-uppercase white--text">
           {{ auth_user.full_name }}
         </div>
-        <small class="white--text text-capitalize"
-          >{{ auth_user.role }} Account</small
-        >
+        <small class="white--text text-capitalize">{{ auth_user.role }} Account</small>
       </div>
       <v-divider></v-divider>
       <v-list dense rounded>
         <!-- Navigation Items -->
         <!-- Common Nav -->
-        <nav-item
-          v-for="item in commonNav"
-          :key="item.title"
-          :nav="item"
-        ></nav-item>
+        <nav-item v-for="item in commonNav" :key="item.title" :nav="item"></nav-item>
         <!-- Admin -->
         <div v-if="auth_user.role == 'admin'">
-          <nav-item
-            v-for="item in adminNav"
-            :key="item.title"
-            :nav="item"
-          ></nav-item>
+          <nav-item v-for="item in adminNav" :key="item.title" :nav="item"></nav-item>
         </div>
       </v-list>
     </v-navigation-drawer>
@@ -68,11 +58,7 @@
             <!-- <v-avatar size="30">
               <img :src="profileImagePath" />
             </v-avatar> -->
-            <v-avatar
-              size="30"
-              color="#eee"
-              class="text-uppercase text-subtitle"
-            >
+            <v-avatar size="30" color="#eee" class="text-uppercase text-subtitle">
               {{ printInitials(auth_user.profile.full_name) }}
             </v-avatar>
           </v-btn>
@@ -88,9 +74,7 @@
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>{{ auth_user.profile.full_name }}</v-list-item-title>
-                <v-list-item-subtitle>{{
-                  auth_user.email
-                }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ auth_user.email }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -105,8 +89,6 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
-import { useAuthUserStore } from "../../../stores/authUser";
 import NavItem from "./NavItem";
 export default {
   components: {
@@ -114,6 +96,7 @@ export default {
   },
   data() {
     return {
+      auth_user: this.$store.state.authUser.userObject,
       drawer: true,
       menu: false,
       commonNav: [
@@ -153,10 +136,6 @@ export default {
         // },
       ],
     };
-  },
-  computed: {
-    ...mapState(useAuthUserStore, ["auth_user"]),
-    // ...mapState(useAuthUserStore, ["authUserObj"]),
   },
   methods: {
     logout: function (event) {

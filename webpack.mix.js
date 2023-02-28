@@ -14,17 +14,9 @@ const mix = require("laravel-mix");
 require("laravel-mix-polyfill");
 
 if (mix.inProduction()) {
-    const TargetsPlugin = require("targets-webpack-plugin");
-    mix.webpackConfig({
-        plugins: [
-            new TargetsPlugin({
-                browsers: ["last 2 versions", "chrome >= 41", "IE 11"]
-            })
-        ]
-    });
     mix.js(
         [
-            "resources/js/app.js"
+            "resources/js/app.js",
             // other js files to add
         ],
         "public/js"
@@ -34,31 +26,32 @@ if (mix.inProduction()) {
         .options({
             autoprefixer: {
                 options: {
-                    browsers: ["last 6 versions"]
-                }
-            }
+                    browsers: ["last 4 versions"],
+                },
+            },
         })
+        /**
+         * Polyfill options
+         * https://browsersl.ist/#q=iOS+%3E%3D+13.2%2C+last+2+versions%2C+not+dead
+         */
         .polyfill({
             enabled: true,
             useBuiltIns: "usage",
-            targets: { ie: 11 },
+            targets: "ChromeAndroid 103, chrome >= 41, iOS >= 13.2", // for staging
+            // "ChromeAndroid 103, chrome >= 41, iOS >= 13.2, last 2 versions, not dead", // for production
             debug: true,
-            corejs: 3
+            corejs: 3,
         });
     mix.version();
 } else {
     mix.js(
         [
-            "resources/js/app.js"
+            "resources/js/app.js",
             // other js files to add
         ],
         "public/js"
     )
-        .vue()
-        .sass("resources/sass/app.scss", "public/css")
-        .polyfill({
-            enabled: true,
-            useBuiltIns: "usage",
-            targets: { firefox: "50", ie: 11 }
-        });
+    .vue()
+    .sass("resources/sass/app.scss", "public/css");
+    mix.version();
 }

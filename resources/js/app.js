@@ -11,13 +11,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { routes } from "./plugins/routes";
 import vuetify from "./plugins/vuetify";
-
-/**
- * Pinia
- */
-import { createPinia, PiniaVuePlugin } from "pinia";
-Vue.use(PiniaVuePlugin);
-const pinia = createPinia();
+import store from "./store"; // vuex store
 
 /**
  * Vue Router
@@ -25,33 +19,33 @@ const pinia = createPinia();
 Vue.use(VueRouter);
 const router = new VueRouter({
     routes,
-    mode: "history"
+    mode: "history",
 });
 
 const helpers_plugin = {
     install(Vue, options) {
         // Date format
-        Vue.prototype.formatDateHelper = date => {
+        Vue.prototype.formatDateHelper = (date) => {
             return new Date(date).toLocaleString("en-US", {
                 day: "2-digit",
                 year: "numeric",
-                month: "long"
+                month: "long",
             });
         };
 
         // Prints name initals
-        Vue.prototype.printInitials = text => {
+        Vue.prototype.printInitials = (text) => {
             return text
                 .split(" ")
                 .slice(0, 2)
                 .join(" ")
                 .split(" ")
-                .map(n => n[0])
+                .map((n) => n[0])
                 .join("");
         };
 
         // retunrs profile_image url
-        Vue.prototype.printUserAvatar = userObj => {
+        Vue.prototype.printUserAvatar = (userObj) => {
             let avatar = "";
             // print profile_image
             avatar =
@@ -65,7 +59,7 @@ const helpers_plugin = {
 
         // Base URL
         Vue.prototype.$baseUrl = window.location.origin;
-    }
+    },
 };
 Vue.use(helpers_plugin);
 
@@ -102,57 +96,48 @@ Vue.component(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import { mapStores, mapState } from "pinia";
-import { useAuthUserStore } from "./stores/authUser";
-const app = new Vue({
-    vuetify,
-    pinia,
-    router,
-    data() {
-        return {
-            isLoading: true,
-            loginValid: true,
-            loginEmail: "",
-            loginEmailrules: [
-                value => !!value || "Required"
-                // value => /.+@.+\..+/.test(value) || "E-mail must be valid"
-            ],
-            loginPassword: "",
-            loginPasswordrules: [
-                value => !!value || "Required",
-                value =>
-                    (value && value.length > 8) ||
-                    "Password must be atleast 8 characters"
-            ]
-        };
-    },
-    watch: {
-        isLoading: function(newVal, oldVal) {
-            this.isLoading = newVal;
-        }
-    },
-    computed: {
-        ...mapState(useAuthUserStore, ["authUserObj"]),
-        ...mapStores(useAuthUserStore)
-    },
-    methods: {
-        loginValidate() {
-            if (this.$refs.form.validate()) {
-                this.snackbar = true;
-            }
+
+store.dispatch("fetchAuthUser").then(() => {
+    const app = new Vue({
+        vuetify,
+        store,
+        router,
+        data() {
+            return {
+                isLoading: true,
+                loginValid: true,
+                loginEmail: "",
+                loginEmailrules: [
+                    (value) => !!value || "Required",
+                    // value => /.+@.+\..+/.test(value) || "E-mail must be valid"
+                ],
+                loginPassword: "",
+                loginPasswordrules: [
+                    (value) => !!value || "Required",
+                    (value) =>
+                        (value && value.length > 8) ||
+                        "Password must be atleast 8 characters",
+                ],
+            };
         },
-        logout: function(event) {
-            event.preventDefault();
-            document.getElementById("logout-form").submit();
-        }
-    },
-    created() {
-        if (Object.keys(this.authUserObj).length == 0) {
-            this.authUserStore.fetchAuthUser().then(() => {
-                this.isLoading = false;
-            });
-        } else {
+        watch: {
+            isLoading: function (newVal, oldVal) {
+                this.isLoading = newVal;
+            },
+        },
+        methods: {
+            loginValidate() {
+                if (this.$refs.form.validate()) {
+                    this.snackbar = true;
+                }
+            },
+            logout: function (event) {
+                event.preventDefault();
+                document.getElementById("logout-form").submit();
+            },
+        },
+        created() {
             this.isLoading = false;
-        }
-    }
-}).$mount("#app");
+        },
+    }).$mount("#app");
+});
